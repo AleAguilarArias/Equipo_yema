@@ -7,8 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sidebar-bg: #feb24c; /* Fondo naranja/cálido */
-            --sidebar-text: #333333; /* Texto oscuro para contraste */
+            /* Color amarillo ajustado para coincidir con el fondo de la imagen F5.jpg */
+            --sidebar-bg: #FEF2B5; 
+            --sidebar-text: #333333; 
             --text-main: #333333;
             --bg-main: #ffffff;
             --accent: #86C1B9; 
@@ -21,6 +22,8 @@
             display: flex;
             background-color: var(--bg-main);
             line-height: 1.6;
+            /* Aseguramos que la página completa pueda hacer scroll horizontal si es necesario, pero fluya natural en vertical */
+            overflow-x: hidden; 
         }
 
         /* --- Barra Lateral (Sidebar) --- */
@@ -34,15 +37,17 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            /* Agregamos scroll interno por si la pantalla es muy pequeña y el menú no cabe */
+            overflow-y: auto; 
         }
 
         .sidebar-logo {
             width: 100%;
-            max-width: 180px; 
+            max-width: 160px; 
             height: auto;
-            margin-bottom: 20px; 
+            margin: 0 auto 20px auto; 
             display: block;
-            /* Se eliminó el filtro invertido para que el JPG cargue con sus colores normales */
+            border-radius: 50%; /* Opcional: hace que la imagen se vea circular para disimular los bordes */
         }
 
         .sidebar h1 {
@@ -50,12 +55,14 @@
             margin-bottom: 10px;
             font-size: 2em;
             margin-top: 0; 
+            text-align: center;
         }
 
         .sidebar p {
             font-size: 0.9em;
             opacity: 0.8;
             margin-bottom: 40px;
+            text-align: center;
         }
 
         .nav-links {
@@ -75,6 +82,7 @@
             font-size: 1.1em;
             transition: color 0.3s ease;
             cursor: pointer;
+            display: block;
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -82,9 +90,11 @@
         }
 
         .social-icons {
-            margin-top: auto;
+            margin-top: 40px;
             display: flex;
+            justify-content: center;
             gap: 15px;
+            padding-bottom: 20px;
         }
 
         .social-icons span {
@@ -107,7 +117,7 @@
         /* --- Contenido Principal --- */
         .content {
             margin-left: 300px;
-            padding: 60px 80px;
+            padding: 60px 80px 100px 80px; /* Padding bottom extra para scrollear cómodamente hasta el final */
             width: calc(100% - 300px);
             box-sizing: border-box;
             max-width: 1000px;
@@ -133,6 +143,15 @@
             object-fit: cover;
             margin-bottom: 30px;
             border-radius: 4px;
+        }
+
+        .content-img {
+            width: 100%;
+            max-width: 700px;
+            margin: 20px auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .content h2 {
@@ -168,7 +187,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 4px solid var(--sidebar-bg);
+            border-left: 4px solid #F5D34C; /* Borde izquierdo un poco más oscuro que el fondo para que resalte */
             border-radius: 0 4px 4px 0;
         }
 
@@ -195,8 +214,9 @@
             font-size: 0.95em;
         }
 
-        .panel ul {
+        .panel ul, .panel ol {
             padding-left: 20px;
+            margin-bottom: 20px;
         }
 
         .panel li {
@@ -209,18 +229,10 @@
             padding-left: 30px;
         }
 
-        .content-img {
-            width: 100%;
-            max-width: 600px;
-            margin: 15px 0;
-            border-radius: 4px;
-            display: block;
-        }
-
         /* Responsivo para móviles */
         @media screen and (max-width: 850px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 30px; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 30px; overflow-y: visible; }
             .content { margin-left: 0; width: 100%; padding: 30px; }
             .hero-img { height: 200px; }
             .social-icons { margin-top: 20px; }
@@ -258,6 +270,7 @@
 
             <button class="accordion-btn">Definición</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>Según Montenegro (2004):</strong> una situación que representa una falta de armonía con los valores o normas generales de una sociedad dada, o un fenómeno que tiene impacto negativo sobre la vida de un segmento considerable de la población.</li>
                     <li><strong>Según Arteaga Botello (2021):</strong> un fenómeno que es construido socialmente que depende de cómo diversos actores sociales traducen tensiones y conflictos en demandas públicas de justicia o reparación ante la sociedad en su conjunto.</li>
@@ -266,15 +279,24 @@
 
             <button class="accordion-btn">Clasificaciones (Montenegro, 2004)</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>Tendencia de Objetivismo:</strong> El estudio sistemático (utiliza la observación y medición científica) de las condiciones de vida de las personas para detectar las problemáticas que les envuelven. Los problemas sociales son responsabilidad del estado.</li>
-                    <li><strong>Tendencia de Subjetivismo/Intersubjetividad:</strong> Un problema social es lo que un grupo significativo de la sociedad percibe y define como problema y a la vez pone en marcha acciones para resolverlo. Asume que existen diferentes grupos sociales y que éstos tienen intereses distintos y, a veces, contrapuestos. Condiciones: 1. Un grupo nota que algo les afecta, 2. Ese grupo logra convencer a otros de que el problema es real, 3. Existe la posibilidad y el deseo de transformar esa realidad.</li>
-                    <li><strong>Punto de Vista Intermedia:</strong> Un problema social se manifiesta cuando un grupo es consciente de una condición social objetiva que afecta a sus valores y que la solución se puede dar mediante una acción colectiva.</li>
+                    <li><strong>Tendencia de Subjetivismo/Intersubjetividad:</strong> Un problema social es lo que un grupo significativo de la sociedad percibe y define como problema y a la vez pone en marcha acciones para resolverlo. Asume que existen diferentes grupos sociales y que éstos tienen intereses distintos y, a veces, contrapuestos. <br><br>
+                    <strong>Condiciones para que algo sea un problema social según esta tendencia:</strong>
+                    <ol>
+                        <li>Un grupo nota que algo les afecta.</li>
+                        <li>Ese grupo logra convencer a otros de que el problema es real.</li>
+                        <li>Existe la posibilidad y el deseo de transformar esa realidad.</li>
+                    </ol>
+                    </li>
+                    <li><strong>Punto de Vista Intermedio:</strong> Un problema social se manifiesta cuando un grupo es consciente de una condición social objetiva que afecta a sus valores y que la solución se puede dar mediante una acción colectiva.</li>
                 </ul>
             </div>
 
             <button class="accordion-btn">Elementos/Características (Arteaga Botello, 2021)</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>1. Condición Social Percibido como una Problemática:</strong> Una condición negativa debe ser interpretada y presentada públicamente como un asunto que requiere atención e intervención colectiva.</li>
                     <li><strong>2. Construcción Social mediante Discursos e Instituciones:</strong> El problema social surge cuando actores sociales traducen tensiones y conflictos en términos de demandas de justicia o reparación.</li>
@@ -285,6 +307,7 @@
 
             <button class="accordion-btn">Conceptos Relacionados</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>Construcción Social:</strong> El problema social no es inherentemente problemático por sí mismo, sino que es interpretado y definido colectivamente a través de discursos públicos e institucionales.</li>
                     <li><strong>Societalización:</strong> El proceso por el cual una condición o conflicto se traslada de esferas no civiles hacia la esfera civil pública, donde se convierte en un problema que exige atención colectiva.</li>
@@ -305,14 +328,22 @@
 
             <button class="accordion-btn">Clasificaciones (Sánchez Vidal, 2007)</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>Estructural (cualitativo):</strong> Transforma la estructura institucional, las funciones de las instituciones sociales y las relaciones entre los distintos sistemas sociales.</li>
-                    <li><strong>Relacional:</strong> Modifica las relaciones entre individuos o grupos. Horizontales: fortalecimiento de la solidaridad y el sentido de pertenencia. Verticales: mayor participación y democratización en la toma de decisiones.</li>
+                    <li><strong>Relacional:</strong> Modifica las relaciones entre individuos o grupos.
+                        <ul>
+                            <li><strong>Horizontales:</strong> fortalecimiento de la solidaridad y el sentido de pertenencia.</li>
+                            <li><strong>Verticales:</strong> mayor participación y democratización en la toma de decisiones.</li>
+                        </ul>
+                    </li>
                     <li><strong>Desarrollo del sistema (cuantitativo):</strong> Implica el fortalecimiento de las potencialidades del sistema y de sus miembros, promoviendo el desarrollo integral de áreas como economía, educación, salud, urbanismo y participación social.</li>
                     <li><strong>Distributivo:</strong> Cambia la distribución y el acceso a recursos sociales como poder, dinero, prestigio o información, mediante estrategias como igualdad de oportunidades, redistribución de ingresos, gratuidad de servicios básicos y empoderamiento social.</li>
                     <li><strong>Instituciones paralelas:</strong> Creación de alternativas sociales cuando las instituciones existentes no satisfacen las necesidades de la población, como escuelas alternativas, comunidades terapéuticas o sistemas de trueque.</li>
                 </ul>
-                <img src="fotos/F6.png" alt="Características de Clasificación del Cambio Social" class="content-img">
+                
+                <img src="fotos/F6.png" alt="Características del Cambio Social" class="content-img">
+                <br>
             </div>
 
             <button class="accordion-btn">Elementos/Características</button>
@@ -327,26 +358,30 @@
                     <li><strong>Evaluación dinámica:</strong> Antes de intervenir se debe analizar la evolución y dinámica del sistema, para actuar de forma estratégica y coherente con su dirección de cambio.</li>
                     <li><strong>Proceso y relación interventor-sistema:</strong> La relación, participación y comunicación entre interventor y sistema influyen en el resultado del cambio. El protagonismo puede recaer en el interventor, en el colectivo o ser compartido.</li>
                 </ul>
+                
                 <img src="fotos/F7.png" alt="Elementos del Cambio Social" class="content-img">
+                <br>
             </div>
 
             <button class="accordion-btn">Conceptos Relacionados</button>
             <div class="panel">
+                <br>
                 <ul>
-                    <li><strong>Innovación Social:</strong> Prácticas nuevas que buscan transformar la realidad social mediante soluciones sostenibles, con participación de diversos actores sociales (Sáez Blasco, 2011; Phills Jr. et al., 2008).</li>
-                    <li><strong>Concientización:</strong> Proceso que vincula la liberación personal con la transformación social, permitiendo que las comunidades reconozcan su capacidad de cambiar su realidad (Martín-Baró, 1998).</li>
+                    <li><strong>Innovación Social:</strong> Prácticas nuevas que buscan transformar la realidad social mediante soluciones sostenibles, con participación de diversos actores sociales (Sáez Blasco, 2011; Phills Jr. et al., 2008; como se citó en Mesa Rodríguez y Restrepo Medina, 2020).</li>
+                    <li><strong>Concientización:</strong> Proceso que vincula la liberación personal con la transformación social, permitiendo que las comunidades reconozcan su capacidad de cambiar su realidad (Martín-Baró, 1998, citado en Martín, 2024).</li>
                     <li><strong>Empoderamiento:</strong> Proceso mediante el cual individuos y colectivos ejercen control e influencia sobre decisiones que afectan su vida y su comunidad (Zimmerman, 2000).</li>
                     <li><strong>Acción Colectiva:</strong> Interacción estratégica basada en cooperación y compromiso compartido para alcanzar objetivos comunes, influida por las oportunidades del entorno (Cante, 2007).</li>
                 </ul>
             </div>
 
-            <button class="accordion-btn">Ejemplos</button>
+            <button class="accordion-btn">Ejemplos de Cambio Social</button>
             <div class="panel">
+                <br>
                 <ul>
-                    <li><strong>Abolición de la Esclavitud:</strong> Movimiento político, social y moral que buscó eliminar la esclavitud y la trata de personas esclavizadas. Combinó campañas morales, presión política y movilización (Stauffer, 2012).</li>
-                    <li><strong>Matrimonio Igualitario:</strong> Implica que parejas del mismo sexo puedan acceder al matrimonio civil con los mismos derechos. Se vincula con el derecho a la igualdad y a la no discriminación (Ramírez, 2019).</li>
-                    <li><strong>Sufragio Femenino:</strong> Derecho de las mujeres a votar y ser votadas en igualdad de condiciones. Representa un logro central del feminismo y el reconocimiento ciudadano (Montes et al., 2021).</li>
-                    <li><strong>Revolución Digital e Internet:</strong> Nueva etapa histórica centrada en la información y la conectividad global. Pasa de un paradigma de transformación de materia a uno enfocado en el procesamiento de información (Hilbert, 2020).</li>
+                    <li><strong>Abolición de la Esclavitud:</strong> El abolicionismo fue un movimiento político, social y moral que buscó eliminar la esclavitud y la trata de personas esclavizadas, especialmente entre los siglos XVIII y XIX. Se trató de un movimiento transatlántico que combinó campañas morales, presión política, movilización social y la resistencia de las propias personas esclavizadas para abolir una de las instituciones económicas más rentables de la edad moderna (Stauffer, 2012).</li>
+                    <li><strong>Matrimonio Igualitario:</strong> Implica que parejas del mismo sexo puedan acceder al matrimonio civil con los mismos derechos que las parejas heterosexuales. La creación de instituciones separadas se considera discriminatoria, por lo que el matrimonio igualitario se vincula con el derecho a la igualdad y a la no discriminación (Ramírez, 2019).</li>
+                    <li><strong>Sufragio Femenino:</strong> Es el derecho de las mujeres a votar y ser votadas en igualdad de condiciones que los hombres. Representa un logro central del movimiento feminista y el reconocimiento de las mujeres como ciudadanas con igualdad política y jurídica (Montes et al., 2021).</li>
+                    <li><strong>Revolución Digital e Internet:</strong> Representan una nueva etapa histórica centrada en la información y la conectividad global. Este cambio implica pasar de un paradigma basado en la transformación de materia y energía a otro enfocado en la generación, procesamiento y circulación de información mediante tecnologías digitales (Hilbert, 2020).</li>
                 </ul>
             </div>
         </section>
@@ -364,6 +399,7 @@
 
             <button class="accordion-btn">Clasificación de las necesidades (Bradshaw)</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>Necesidad normativa:</strong> La que identifican los expertos desde su conocimiento técnico, sin que la comunidad la haya manifestado necesariamente.</li>
                     <li><strong>Necesidad expresada:</strong> La que se convierte en demandas explícitas que la comunidad realiza a través de líderes, organizaciones o acciones colectivas.</li>
@@ -375,23 +411,25 @@
 
             <button class="accordion-btn">Elementos y Características</button>
             <div class="panel">
+                <br>
                 <ul>
                     <li><strong>Concepto multifacético:</strong> Es compleja y no tiene una definición única aceptada universalmente; su significado varía según el contexto disciplinar y geográfico.</li>
-                    <li><strong>Poblaciones específicas y vulnerables:</strong> Adquiere especial relevancia en grupos desatendidos como poblaciones rurales, sectores empobrecidos, minorías, inmigrantes, entre otros.</li>
+                    <li><strong>Poblaciones específicas y vulnerables:</strong> Adquiere especial relevancia en grupos desatendidos como poblaciones rurales, sectores empobrecidos, personas sin hogar, minorías, inmigrantes, mayores, mujeres, niños vulnerables y personas con enfermedades crónicas.</li>
                     <li><strong>Carácter dinámico y contextual:</strong> Su definición y priorización varían en el tiempo según el contexto social, político, económico y los recursos disponibles.</li>
-                    <li><strong>Relación con activos y fortalezas comunitarias:</strong> No debe evaluarse de forma aislada, sino en relación con los activos disponibles en la comunidad, pasando de un enfoque en déficits a uno basado en capacidades.</li>
-                    <li><strong>Participación de la comunidad:</strong> Su detección requiere métodos cuantitativos y cualitativos, incorporando la voz de los miembros.</li>
+                    <li><strong>Relación con activos y fortalezas comunitarias:</strong> No debe evaluarse de forma aislada, sino en relación con los activos disponibles en la comunidad, pasando de un enfoque en déficits a uno basado en capacidades internas.</li>
+                    <li><strong>Participación de la comunidad:</strong> Su detección requiere métodos cuantitativos y cualitativos, con tendencia creciente hacia enfoques participativos que incorporan la voz de los miembros, especialmente de grupos vulnerables.</li>
                 </ul>
             </div>
 
             <button class="accordion-btn">Conceptos Relacionados</button>
             <div class="panel">
+                <br>
                 <ul>
-                    <li><strong>Detección de necesidades:</strong> Proceso de identificación de carencias y recursos en una comunidad.</li>
+                    <li><strong>Detección de necesidades:</strong> Proceso de identificación de carencias y recursos en una comunidad para orientar la acción comunitaria.</li>
                     <li><strong>Satisfacción de necesidades:</strong> Beneficio que los miembros obtienen por su pertenencia a la comunidad.</li>
                     <li><strong>Problematización:</strong> Proceso de reflexión crítica mediante el cual la comunidad identifica y analiza sus necesidades como situaciones transformables.</li>
                     <li><strong>Autogestión:</strong> Capacidad comunitaria para generar condiciones que permitan satisfacer sus necesidades.</li>
-                    <li><strong>Fortalecimiento:</strong> Desarrollo de capacidades y recursos comunitarios para controlar el entorno.</li>
+                    <li><strong>Fortalecimiento:</strong> Desarrollo de capacidades y recursos comunitarios para controlar el entorno según sus necesidades.</li>
                     <li><strong>Concienciación:</strong> Toma de conciencia crítica sobre las necesidades derivadas de relaciones de opresión.</li>
                     <li><strong>Recursos:</strong> Elementos sociales disponibles para la consecución de necesidades comunitarias.</li>
                     <li><strong>Acceso:</strong> Posibilidad comunitaria de obtener y manejar recursos para satisfacer necesidades.</li>
@@ -400,10 +438,11 @@
 
             <button class="accordion-btn">Ejemplos</button>
             <div class="panel">
+                <br>
                 <ul>
-                    <li><strong>Acceso a vivienda digna:</strong> Falta de viviendas asequibles y seguras que dificulta la estabilidad y calidad de vida de las familias, especialmente en contextos urbanos.</li>
-                    <li><strong>Acceso a educación de calidad:</strong> Ausencia de escuelas adecuadas, recursos educativos o igualdad de oportunidades que limita el desarrollo.</li>
-                    <li><strong>Acceso a servicios básicos:</strong> Carencia de agua potable, electricidad, transporte público confiable y saneamiento que impacta negativamente en la salud.</li>
+                    <li><strong>Acceso a vivienda digna:</strong> Falta de viviendas asequibles y seguras que dificulta la estabilidad y calidad de vida de las familias, especialmente en contextos urbanos con costos elevados.</li>
+                    <li><strong>Acceso a educación de calidad:</strong> Ausencia de escuelas adecuadas, recursos educativos o igualdad de oportunidades que limita el desarrollo y afecta el capital humano de la comunidad.</li>
+                    <li><strong>Acceso a servicios básicos:</strong> Carencia de agua potable, electricidad, transporte público confiable y saneamiento que impacta negativamente en la salud y el bienestar general.</li>
                 </ul>
             </div>
         </section>
@@ -442,6 +481,7 @@
     </main>
 
     <script>
+        // Función para cambiar de pestaña
         function openTab(evt, tabName) {
             var tabcontent = document.getElementsByClassName("tab-content");
             for (var i = 0; i < tabcontent.length; i++) {
@@ -453,8 +493,12 @@
             }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            
+            // Asegurarse de que el scroll vuelva arriba al cambiar de pestaña
+            window.scrollTo(0, 0);
         }
 
+        // Función para abrir/cerrar acordeones con cálculo automático de altura
         var accordions = document.getElementsByClassName("accordion-btn");
         for (var i = 0; i < accordions.length; i++) {
             accordions[i].addEventListener("click", function() {
@@ -463,7 +507,8 @@
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
-                    panel.style.maxHeight = panel.scrollHeight + 100 + "px"; 
+                    // Ajuste para permitir que las imágenes internas se desplieguen completamente sin cortarse
+                    panel.style.maxHeight = panel.scrollHeight + 500 + "px"; 
                 }
             });
         }
