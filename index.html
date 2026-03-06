@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sidebar-bg: #2C4B63; /* Ajusté el azul para que se parezca más a tu segunda imagen */
-            --sidebar-text: #ffffff;
+            --sidebar-bg: #feb24c; /* Nuevo color naranja/cálido */
+            --sidebar-text: #333333; /* Texto oscuro para que contraste y se pueda leer */
             --text-main: #333333;
             --bg-main: #ffffff;
             --accent: #86C1B9; 
@@ -26,7 +26,7 @@
         /* --- Barra Lateral (Sidebar) --- */
         .sidebar {
             width: 300px;
-            background-color: var(--sidebar-bg); /* Ahora es solo un color sólido */
+            background-color: var(--sidebar-bg); 
             color: var(--sidebar-text);
             height: 100vh;
             position: fixed;
@@ -36,12 +36,11 @@
             flex-direction: column;
         }
 
-        /* Nueva clase para el logo superior */
         .sidebar-logo {
             width: 100%;
-            max-width: 180px; /* Tamaño máximo para que no se vea gigante */
+            max-width: 180px; 
             height: auto;
-            margin-bottom: 20px; /* Separación entre el logo y el título */
+            margin-bottom: 20px; 
             display: block;
         }
 
@@ -49,7 +48,7 @@
             font-family: 'Merriweather', serif;
             margin-bottom: 10px;
             font-size: 2em;
-            margin-top: 0; /* Ajuste para que se alinee bien debajo del logo */
+            margin-top: 0; 
         }
 
         .sidebar p {
@@ -69,7 +68,7 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(51, 51, 51, 0.7); /* Gris oscuro con un poco de transparencia */
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1em;
@@ -78,7 +77,7 @@
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: #ffffff;
+            color: #111111; /* Negro puro al pasar el mouse o estar activo */
         }
 
         .social-icons {
@@ -91,12 +90,17 @@
             display: inline-flex;
             width: 30px;
             height: 30px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(51, 51, 51, 0.1); /* Fondo sutil oscuro para los íconos */
             border-radius: 50%;
             align-items: center;
             justify-content: center;
             font-size: 0.8em;
             cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .social-icons span:hover {
+            background: rgba(51, 51, 51, 0.2);
         }
 
         /* --- Contenido Principal --- */
@@ -217,7 +221,7 @@
 <body>
 
     <aside class="sidebar">
-        <img src="fotos/F3.png" alt="Logo Equipo Yemas" class="sidebar-logo">
+        <img src="fotos/F2.png" alt="Logo Equipo Yemas" class="sidebar-logo">
         
         <h1>Equipo Yemas</h1>
         <p>Portafolio de apuntes e investigación<br>Psicología y Análisis Social.</p>
@@ -323,7 +327,7 @@
                     <li><strong>Estructural (Cualitativo):</strong> Cambia la estructura institucional y las funciones realizadas por las instituciones sociales.</li>
                     <li><strong>Relacional:</strong> Cambian las relaciones entre individuos o grupos (aumento de solidaridad, democratización).</li>
                     <li><strong>Desarrollo del Sistema (Cuantitativo):</strong> Se desarrollan potencialidades del sistema de forma integral (economía, educación, salud).</li>
-                    <li><strong>Distributivo:</strong> Cambia la distribución de bienes y recursos (poder, dinero, prestigio) y la forma de acceder a ellos.</li>
+                    <li><strong>Distributivo:</strong> Cambia la distribution de bienes y recursos (poder, dinero, prestigio) y la forma de acceder a ellos.</li>
                     <li><strong>Instituciones Paralelas:</strong> Generación de alternativas sociales (escuelas alternativas, comercio de trueque).</li>
                 </ul>
             </div>
@@ -421,7 +425,7 @@
                 <p>Montenegro Martínez, M. (2004). Comunidad y bienestar social. En G. Musitu Ochoa et al. (Eds.), <em>Introducción a la Psicología Comunitaria.</em> UCO.</p>
                 <p>Sánchez Vidal, A. (2007). <em>Manual de psicología comunitaria.</em> Ediciones Pirámide.</p>
                 <p>Zimmerman, M. A. (2000). Empowerment theory. In J. Rappaport & E. Seidman (Eds.), <em>Handbook of community psychology</em> (pp. 43–63).</p>
-                </div>
+            </div>
         </section>
 
     </main>
@@ -451,10 +455,6 @@
                     panel.style.maxHeight = panel.scrollHeight + 100 + "px"; 
                 }
             });
-        }
-    </script>
-</body>
-</html>
         }
     </script>
 </body>
