@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Yemas - Psicología Comunitaria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-bg: #1A4D6D; /* Azul de la imagen */
+            --sidebar-text: #ffffff;
+            --text-main: #333333;
+            --bg-main: #ffffff;
+            --accent: #86C1B9; /* Verde agua sutil */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            background-color: var(--bg-main);
+            line-height: 1.6;
+        }
+
+        /* --- Barra Lateral (Sidebar) --- */
+        .sidebar {
+            width: 300px;
+            background-color: var(--sidebar-bg);
+            /* Imagen de fondo sutil para la barra lateral apuntando a tu carpeta local */
+            background-image: linear-gradient(rgba(26, 77, 109, 0.85), rgba(26, 77, 109, 0.95)), url('fotos/F1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--sidebar-text);
+            height: 100vh;
+            position: fixed;
+            padding: 50px 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h1 {
+            font-family: 'Merriweather', serif;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .sidebar p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .social-icons {
+            margin-top: auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons span {
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+
+        /* --- Contenido Principal --- */
+        .content {
+            margin-left: 300px;
+            padding: 60px 80px;
+            width: calc(100% - 300px);
+            box-sizing: border-box;
+            max-width: 1000px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .content h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .date {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Acordeones (Figuras desplegables) --- */
+        .accordion-btn {
+            background-color: #f9f9f9;
+            color: #333;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            font-family: 'Merriweather', serif;
+            transition: 0.4s;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--sidebar-bg);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .accordion-btn:hover, .accordion-btn.active-btn {
+            background-color: #ececec;
+        }
+
+        .accordion-btn::after {
+            content: '\002B'; /* Símbolo de Más */
+            font-size: 1.5em;
+            color: #777;
+        }
+
+        .accordion-btn.active-btn::after {
+            content: "\2212"; /* Símbolo de Menos */
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            font-size: 0.95em;
+        }
+
+        .panel ul {
+            padding-left: 20px;
+        }
+
+        .panel li {
+            margin-bottom: 10px;
+        }
+
+        .ref-list p {
+            margin-bottom: 15px;
+            text-indent: -30px;
+            padding-left: 30px;
+        }
+
+        /* Responsivo para móviles */
+        @media screen and (max-width: 850px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 30px; }
+            .content { margin-left: 0; width: 100%; padding: 30px; }
+            .hero-img { height: 200px; }
+            .social-icons { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h1>Equipo Yemas</h1>
+        <p>Portafolio de apuntes e investigación<br>Psicología y Análisis Social.</p>
+        
+        <ul class="nav-links">
+            <li><a class="nav-link active" onclick="openTab(event, 'problemas')">Problemas Sociales</a></li>
+            <li><a class="nav-link" onclick="openTab(event, 'cambios')">Cambios Sociales</a></li>
+            <li><a class="nav-link" onclick="openTab(event, 'necesidades')">Necesidades</a></li>
+            <li><a class="nav-link" onclick="openTab(event, 'referencias')">Referencias</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <span>in</span>
+            <span>gh</span>
+            <span>✉</span>
+        </div>
+    </aside>
+
+    <main class="content">
+
+        <section id="problemas" class="tab-content active">
+            <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Problemas Sociales" class="hero-img">
+            <h2>Problemas Sociales</h2>
+            <div class="date">Exploración conceptual</div>
+            <p>Un análisis de las condiciones que violan las normas generales compartidas y su construcción en el discurso público.</p>
+
+            <button class="accordion-btn">Definición</button>
+            <div class="panel">
+                <p>Un problema social es:</p>
+                <ul>
+                    <li>La definición de una situación que representa una falta de armonía con los valores de una sociedad dada.</li>
+                    <li>Una situación que viola las normas generales compartidas en un sistema social.</li>
+                    <li>Un fenómeno que tiene impacto negativo sobre la vida de un segmento considerable de la población (Montenegro, 2004).</li>
+                    <li>Según Arteaga Botello (2021), un problema social no se entiende únicamente como una condición negativa que existe en una sociedad, sino como un fenómeno que es “construido socialmente” a través de discursos, instituciones y procesos sociales que le otorgan significado y relevancia pública.</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Clasificaciones</button>
+            <div class="panel">
+                <h4>Tendencia de Objetivismo</h4>
+                <ul>
+                    <li>El estudio sistemático de las condiciones de vida de las personas para detectar las problemáticas que les envuelven.</li>
+                    <li>Asume que es posible ubicar el desequilibrio y su causa en una sociedad sin la opinión de las personas afectadas.</li>
+                    <li>La responsabilidad es colectiva (del estado), ya que problemas “sociales” no son personales.</li>
+                </ul>
+                <h4>Tendencia de Subjetivismo/Intersubjetividad</h4>
+                <ul>
+                    <li>Lo que un grupo significativo de la sociedad percibe y define algunas condiciones como problema y a la vez pone en marcha acciones para resolverlo.</li>
+                    <li>Asume que se puede convertir alguna condición social específica en problema social, mediante la influencia que pueda tener un grupo dado.</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Condiciones y Punto de Vista</button>
+            <div class="panel">
+                <p><strong>Condiciones para que algo sea un Problema Social:</strong></p>
+                <ol>
+                    <li>La conciencia de un grupo de que hay un problema que les afecta.</li>
+                    <li>La influencia de este grupo para conseguir que el problema ubicado sea considerado como tal por otros agentes sociales.</li>
+                    <li>La posibilidad (y deseabilidad) de la transformación de la condición problemática.</li>
+                </ol>
+                <p><strong>Punto de Vista Intermedio:</strong> Un problema social se manifiesta cuando un grupo es consciente de una condición social objetiva que afecta a sus valores y que la solución se puede dar mediante una acción colectiva.</p>
+                <p><em>Reflexión: ¿Cuál de estos es el mejor punto de vista y por qué?</em></p>
+            </div>
+
+            <button class="accordion-btn">Elementos/Características</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>1. Condición Social Percibida:</strong> No basta con que exista una condición negativa: debe ser interpretada y presentada públicamente como un asunto que requiere atención.</li>
+                    <li><strong>2. Construcción Social:</strong> Actores sociales traducen tensiones y conflictos en términos de demandas de justicia o reparación (Arteaga Botello, 2021).</li>
+                    <li><strong>3. Inclusión en la Esfera Pública:</strong> El problema trasciende ámbitos privados y se societaliza.</li>
+                    <li><strong>4. Exigencia de Transformación:</strong> Implica que se exijan cambios, transparencia o sanciones por parte de instituciones.</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Conceptos Relacionados y Ejemplos</button>
+            <div class="panel">
+                <p><strong>Construcción Social:</strong> El problema no es inherentemente problemático por sí mismo, sino que es interpretado colectivamente.</p>
+                <p><strong>Societalización:</strong> Traslado de un conflicto de esferas no civiles hacia la esfera civil pública.</p>
+                <hr>
+                <p><strong>Ejemplos:</strong></p>
+                <ul>
+                    <li><strong>Trata de Personas:</strong> Problema persistente con implicaciones de explotación y vulneración de derechos (Byrne, 2025).</li>
+                    <li><strong>Ciberacoso:</strong> Afecta el bienestar de adolescentes requiriendo respuestas colectivas (Socioeconomic Effects in Cyberbullying Study, 2025).</li>
+                    <li><strong>Acoso Escolar:</strong> Vulnera derechos y afecta la convivencia académica (Alcívar Solórzano & Alcívar Calderón, 2025).</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section id="cambios" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1461532257246-777de18cd58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Cambios Sociales" class="hero-img">
+            <h2>Cambios Sociales</h2>
+            <div class="date">Dinámicas de transformación</div>
+            
+            <button class="accordion-btn">Definición</button>
+            <div class="panel">
+                <p>“El cambio social puede ser definido como la alteración de la estructura o el funcionamiento de un sistema social que tiene efectos relevantes para la vida de sus miembros; esto es, la modificación de los sistemas normativos, relacionales y teleológicos (de fijación de metas)..." (Sánchez Vidal, 2007, p.141).</p>
+            </div>
+
+            <button class="accordion-btn">Clasificaciones (Sánchez Vidal, 2007)</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Estructural (Cualitativo):</strong> Cambia la estructura institucional y las funciones realizadas por las instituciones sociales.</li>
+                    <li><strong>Relacional:</strong> Cambian las relaciones entre individuos o grupos (aumento de solidaridad, democratización).</li>
+                    <li><strong>Desarrollo del Sistema (Cuantitativo):</strong> Se desarrollan potencialidades del sistema de forma integral (economía, educación, salud).</li>
+                    <li><strong>Distributivo:</strong> Cambia la distribución de bienes y recursos (poder, dinero, prestigio) y la forma de acceder a ellos.</li>
+                    <li><strong>Instituciones Paralelas:</strong> Generación de alternativas sociales (escuelas alternativas, comercio de trueque).</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Elementos/Características</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Interdependencia:</strong> El cambio en una parte afecta su relación con el resto del sistema.</li>
+                    <li><strong>Multiplicidad de Efectos:</strong> Produce efectos múltiples; al evaluar deben considerarse los efectos secundarios.</li>
+                    <li><strong>Inercia Funcional:</strong> Los sistemas tienden a autorreproducirse. Un cambio brusco puede generar resistencias.</li>
+                    <li><strong>Perspectiva Adaptativa:</strong> El cambio puede darse en la persona, el sistema o la relación persona-sistema.</li>
+                    <li><strong>Recursos Personales y Sociales:</strong> La acción puede orientarse a crear recursos o a redistribuirlos.</li>
+                    <li><strong>Evaluación Dinámica:</strong> Antes de intervenir, es necesario conocer la dirección y ritmo del cambio en el sistema.</li>
+                    <li><strong>Proceso/Relación:</strong> La relación entre interventor y sistema social es tan importante como el contenido.</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Conceptos Relacionados y Ejemplos</button>
+            <div class="panel">
+                <p><strong>Innovación Social:</strong> Prácticas nuevas que buscan transformar la realidad mediante soluciones sostenibles.</p>
+                <p><strong>Concientización:</strong> Proceso dialéctico que articula la liberación personal con la transformación social.</p>
+                <p><strong>Empoderamiento:</strong> Cómo las personas ejercen control sobre las decisiones que afectan su vida (Zimmerman, 2000).</p>
+                <hr>
+                <p><strong>Ejemplos:</strong></p>
+                <ul>
+                    <li><strong>Abolición de la Esclavitud:</strong> Movimiento político y moral para poner fin a la esclavitud.</li>
+                    <li><strong>Matrimonio Igualitario:</strong> Acceso al matrimonio civil con los mismos derechos, ejerciendo la igualdad y no discriminación.</li>
+                    <li><strong>Sufragio Femenino:</strong> Derecho de las mujeres a votar, pieza central de la ciudadanía moderna.</li>
+                    <li><strong>Revolución Digital:</strong> Desplazamiento hacia un paradigma basado en el procesamiento de información (Hilbert, 2020).</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section id="necesidades" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Necesidades" class="hero-img">
+            <h2>Necesidades</h2>
+            <div class="date">Carencias y capacidades</div>
+
+            <button class="accordion-btn">Definición General</button>
+            <div class="panel">
+                <p>Expresión de lo que un ser vivo requiere indispensablemente para su conservación y desarrollo. Es un sentimiento o estado ligado a la vivencia de una carencia, que impulsa un esfuerzo para suprimir esa falta o corregir el déficit.</p>
+            </div>
+
+            <button class="accordion-btn">Clasificación (Bradshaw)</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Necesidad normativa:</strong> La que identifican los expertos desde su conocimiento técnico.</li>
+                    <li><strong>Necesidad expresada:</strong> La que se convierte en demandas explícitas por la comunidad.</li>
+                    <li><strong>Necesidad perciba:</strong> Fundamentada en la opinión subjetiva de las personas sobre su realidad.</li>
+                    <li><strong>Necesidad comparativa:</strong> Surge al comparar comunidades y detectar diferencias de recursos.</li>
+                    <li><strong>Necesidad sentida:</strong> La que la comunidad vive directamente y declara como problema.</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Elementos y Características</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Concepto multifacético:</strong> Es compleja y varía según el contexto disciplinar.</li>
+                    <li><strong>Poblaciones vulnerables:</strong> Adquiere especial relevancia en grupos desatendidos.</li>
+                    <li><strong>Carácter dinámico:</strong> Su priorización varía en el tiempo según el contexto social y económico.</li>
+                    <li><strong>Relación con activos comunitarios:</strong> Debe evaluarse en relación con los recursos disponibles, basada en capacidades internas.</li>
+                    <li><strong>Participación de la comunidad:</strong> Requiere métodos que incorporen la voz de los miembros.</li>
+                </ul>
+            </div>
+
+            <button class="accordion-btn">Conceptos Relacionados</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Problematización:</strong> Proceso de reflexión crítica donde se analizan necesidades como situaciones transformables.</li>
+                    <li><strong>Autogestión:</strong> Capacidad para generar condiciones que satisfagan necesidades.</li>
+                    <li><strong>Fortalecimiento:</strong> Desarrollo de capacidades comunitarias.</li>
+                    <li><strong>Concienciación:</strong> Toma de conciencia crítica frente a la opresión.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section id="referencias" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Referencias Bibliográficas" class="hero-img">
+            <h2>Referencias Bibliográficas</h2>
+            <div class="date">Fuentes consultadas</div>
+            
+            <div class="ref-list" style="margin-top: 30px;">
+                <p>Alcívar Solorzano, I. M., & Alcívar Calderón, V. E. (2025). El acoso escolar y estrategias de prevención en estudiantes de básica media. <em>Maestro y Sociedad, 22</em>(4), 3405–3414.</p>
+                <p>Arteaga Botello, N. (2021). ¿Cómo se construye socialmente un problema social? <em>Revista Mexicana de Ciencias Políticas y Sociales, 66</em>(243), 455–459.</p>
+                <p>Bravo, J. (2019). <em>Conceptos Básicos de Psicología Comunitaria. Desde la Acción Comunitaria al Cambio Social</em> (Serie Creación n.° 55).</p>
+                <p>Burton, M. (2004). La psicología de la liberación: aprendiendo de América Latina. <em>Polis, 1</em>(4), 101-124.</p>
+                <p>Byrne, S. (2025). Trata de personas: un problema persistente. <em>Victims and Offenders, 1</em>(1), 1–13.</p>
+                <p>Cante, F. (2007). Acción colectiva, metapreferencias y emociones. <em>Cuadernos de Economía, 26</em>(47), 151-174.</p>
+                <p>Castro Alfaro, A., Restrepo Sierra, L. H., & López Alba, A. (2020). Experiencia de medición del índice de necesidades básicas insatisfechas en barrios en proceso de invasión en Aguachica, Cesar. <em>Revista Facultad de Ciencias Económicas, 28</em>(2), 109–119.</p>
+                <p>Hilbert, M. (2020). Digital technology and social change: The digital transformation of society from a historical perspective. <em>Dialogues in Clinical Neuroscience, 22</em>(2), 189-194.</p>
+                <p>Martín, S. A. (2024). Derivas regionales de la crisis de la psicología social. <em>Salud Mental Y Comunidad, (17)</em>, 71–86.</p>
+                <p>Mesa Rodríguez, M. C., y Restrepo Medina, L. P. (2020). El cambio social como resultado de innovación social mediante metodologías participativas. <em>El Ágora USB, 20</em>(1), 50–65.</p>
+                <p>Montenegro Martínez, M. (2004). Comunidad y bienestar social. En G. Musitu Ochoa et al. (Eds.), <em>Introducción a la Psicología Comunitaria.</em> UCO.</p>
+                <p>Sánchez Vidal, A. (2007). <em>Manual de psicología comunitaria.</em> Ediciones Pirámide.</p>
+                <p>Zimmerman, M. A. (2000). Empowerment theory. In J. Rappaport & E. Seidman (Eds.), <em>Handbook of community psychology</em> (pp. 43–63).</p>
+                </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Lógica de Pestañas (Tabs)
+        function openTab(evt, tabName) {
+            // Ocultar todo el contenido
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Quitar clase active de los botones
+            var navlinks = document.getElementsByClassName("nav-link");
+            for (var i = 0; i < navlinks.length; i++) {
+                navlinks[i].classList.remove("active");
+            }
+            
+            // Mostrar la pestaña actual y añadir active al botón clicado
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Lógica de Acordeones
+        var accordions = document.getElementsByClassName("accordion-btn");
+        for (var i = 0; i < accordions.length; i++) {
+            accordions[i].addEventListener("click", function() {
+                this.classList.toggle("active-btn");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    // Darle suficiente altura para que se despliegue suavemente
+                    panel.style.maxHeight = panel.scrollHeight + 100 + "px"; 
+                }
+            });
+        }
+    </script>
+</body>
+</html>
