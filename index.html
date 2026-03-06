@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sidebar-bg: #1A4D6D; /* Azul de la imagen */
+            --sidebar-bg: #2C4B63; /* Ajusté el azul para que se parezca más a tu segunda imagen */
             --sidebar-text: #ffffff;
             --text-main: #333333;
             --bg-main: #ffffff;
-            --accent: #86C1B9; /* Verde agua sutil */
+            --accent: #86C1B9; 
         }
 
         body {
@@ -26,24 +26,30 @@
         /* --- Barra Lateral (Sidebar) --- */
         .sidebar {
             width: 300px;
-            background-color: var(--sidebar-bg);
-            /* Imagen de fondo sutil para la barra lateral apuntando a tu carpeta local */
-            background-image: linear-gradient(rgba(26, 77, 109, 0.85), rgba(26, 77, 109, 0.95)), url('fotos/F2.jpg');
-            background-size: cover;
-            background-position: center;
+            background-color: var(--sidebar-bg); /* Ahora es solo un color sólido */
             color: var(--sidebar-text);
             height: 100vh;
             position: fixed;
-            padding: 50px 40px;
+            padding: 40px 40px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+        }
+
+        /* Nueva clase para el logo superior */
+        .sidebar-logo {
+            width: 100%;
+            max-width: 180px; /* Tamaño máximo para que no se vea gigante */
+            height: auto;
+            margin-bottom: 20px; /* Separación entre el logo y el título */
+            display: block;
         }
 
         .sidebar h1 {
             font-family: 'Merriweather', serif;
             margin-bottom: 10px;
             font-size: 2em;
+            margin-top: 0; /* Ajuste para que se alinee bien debajo del logo */
         }
 
         .sidebar p {
@@ -166,13 +172,13 @@
         }
 
         .accordion-btn::after {
-            content: '\002B'; /* Símbolo de Más */
+            content: '\002B';
             font-size: 1.5em;
             color: #777;
         }
 
         .accordion-btn.active-btn::after {
-            content: "\2212"; /* Símbolo de Menos */
+            content: "\2212";
         }
 
         .panel {
@@ -211,6 +217,8 @@
 <body>
 
     <aside class="sidebar">
+        <img src="fotos/F2.png" alt="Logo Equipo Yemas" class="sidebar-logo">
+        
         <h1>Equipo Yemas</h1>
         <p>Portafolio de apuntes e investigación<br>Psicología y Análisis Social.</p>
         
@@ -419,26 +427,19 @@
     </main>
 
     <script>
-        // Lógica de Pestañas (Tabs)
         function openTab(evt, tabName) {
-            // Ocultar todo el contenido
             var tabcontent = document.getElementsByClassName("tab-content");
             for (var i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
-            
-            // Quitar clase active de los botones
             var navlinks = document.getElementsByClassName("nav-link");
             for (var i = 0; i < navlinks.length; i++) {
                 navlinks[i].classList.remove("active");
             }
-            
-            // Mostrar la pestaña actual y añadir active al botón clicado
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
-        // Lógica de Acordeones
         var accordions = document.getElementsByClassName("accordion-btn");
         for (var i = 0; i < accordions.length; i++) {
             accordions[i].addEventListener("click", function() {
@@ -447,10 +448,13 @@
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
-                    // Darle suficiente altura para que se despliegue suavemente
                     panel.style.maxHeight = panel.scrollHeight + 100 + "px"; 
                 }
             });
+        }
+    </script>
+</body>
+</html>
         }
     </script>
 </body>
