@@ -47,7 +47,7 @@
             height: auto;
             margin: 0 auto 20px auto; 
             display: block;
-            border-radius: 50%; /* Opcional: hace que la imagen se vea circular para disimular los bordes */
+            border-radius: 50%; /* Hace que la imagen se vea circular */
         }
 
         .sidebar h1 {
@@ -59,10 +59,12 @@
         }
 
         .sidebar p {
-            font-size: 0.9em;
-            opacity: 0.8;
+            font-size: 1.1em; /* Un poco más grande para que destaque */
+            font-weight: 600;
+            opacity: 0.9;
             margin-bottom: 40px;
             text-align: center;
+            color: #111; /* Un tono más oscuro para el nuevo texto */
         }
 
         .nav-links {
@@ -187,7 +189,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 4px solid #F5D34C; /* Borde izquierdo un poco más oscuro que el fondo para que resalte */
+            border-left: 4px solid #F5D34C; /* Borde izquierdo resaltado */
             border-radius: 0 4px 4px 0;
         }
 
@@ -245,7 +247,7 @@
         <img src="fotos/F5.jpg" alt="Logo Equipo Yemas" class="sidebar-logo">
         
         <h1>Equipo Yemas</h1>
-        <p>Portafolio de apuntes e investigación<br>Psicología y Análisis Social.</p>
+        <p>Procesos comunitarios</p>
         
         <ul class="nav-links">
             <li><a class="nav-link active" onclick="openTab(event, 'problemas')">Problemas Sociales</a></li>
@@ -342,7 +344,7 @@
                     <li><strong>Instituciones paralelas:</strong> Creación de alternativas sociales cuando las instituciones existentes no satisfacen las necesidades de la población, como escuelas alternativas, comunidades terapéuticas o sistemas de trueque.</li>
                 </ul>
                 
-                <img src="fotos/F6.png" alt="Características del Cambio Social" class="content-img">
+                <img src="fotos/F6.png" alt="Características del Cambio Social" class="content-img" style="width: 50%; max-width: 350px;">
                 <br>
             </div>
 
@@ -359,7 +361,7 @@
                     <li><strong>Proceso y relación interventor-sistema:</strong> La relación, participación y comunicación entre interventor y sistema influyen en el resultado del cambio. El protagonismo puede recaer en el interventor, en el colectivo o ser compartido.</li>
                 </ul>
                 
-                <img src="fotos/F7.png" alt="Elementos del Cambio Social" class="content-img">
+                <img src="fotos/F7.png" alt="Elementos del Cambio Social" class="content-img" style="width: 50%; max-width: 350px;">
                 <br>
             </div>
 
@@ -508,7 +510,8 @@
                     panel.style.maxHeight = null;
                 } else {
                     // Ajuste para permitir que las imágenes internas se desplieguen completamente sin cortarse
-                    panel.style.maxHeight = panel.scrollHeight + 500 + "px"; 
+                    // Se mantiene un margen extra, pero el scrollHeight se adapta al nuevo tamaño de imagen
+                    panel.style.maxHeight = panel.scrollHeight + 100 + "px"; 
                 }
             });
         }
