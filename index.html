@@ -163,7 +163,6 @@
             text-align: center;
             font-size: 1.3em;
             margin-top: 20px;
-            /* SE HA APLICADO LA TIPOGRAFÍA DE BIENVENIDA AQUÍ */
             font-family: 'Merriweather', serif;
         }
 
@@ -254,6 +253,8 @@
 </head>
 <body>
 
+    <audio id="sonidoPestana" src="sonidos/M1.mp3"></audio>
+
     <aside class="sidebar">
         <img src="fotos/F5.jpg" alt="Logo Equipo Yemas" class="sidebar-logo">
         
@@ -317,7 +318,7 @@
                 </ul>
             </div>
 
-            <button class="accordion-btn">Elements/Características (Arteaga Botello, 2021)</button>
+            <button class="accordion-btn">Elementos/Características (Arteaga Botello, 2021)</button>
             <div class="panel">
                 <br>
                 <ul>
@@ -365,7 +366,7 @@
                     <li><strong>Instituciones paralelas:</strong> Creación de alternativas sociales cuando las instituciones existentes no satisfacen las necesidades de la población, como escuelas alternativas, comunidades terapéuticas o sistemas de trueque.</li>
                 </ul>
                 
-                <img src="fotos/F9.png" alt="Características del Cambio Social" class="content-img" style="width: 50%; max-width: 350px;">
+                <img src="fotos/F10.png" alt="Características de Clasificación del Cambio Social" class="content-img" style="width: 50%; max-width: 350px;">
                 <br>
             </div>
 
@@ -382,7 +383,7 @@
                     <li><strong>Proceso y relación interventor-sistema:</strong> La relación, participación y comunicación entre interventor y sistema influyen en el resultado del cambio. El protagonismo puede recaer en el interventor, en el colectivo o ser compartido.</li>
                 </ul>
                 
-                <img src="fotos/F10.png" alt="Elementos del Cambio Social" class="content-img" style="width: 50%; max-width: 350px;">
+                <img src="fotos/F9.png" alt="Elementos del Cambio Social" class="content-img" style="width: 50%; max-width: 350px;">
                 <br>
             </div>
 
@@ -504,8 +505,18 @@
     </main>
 
     <script>
-        // Función para cambiar de pestaña
+        // Función para cambiar de pestaña y REPRODUCIR SONIDO M1.mp3
         function openTab(evt, tabName) {
+            
+            // Reproducir sonido (M1.mp3)
+            var sonido = document.getElementById("sonidoPestana");
+            if (sonido) {
+                sonido.currentTime = 0; // Reinicia el sonido por si hacen clic muy rápido
+                sonido.play().catch(function(error) {
+                    console.log("El navegador bloqueó el audio hasta que el usuario interactúe más con la página.");
+                });
+            }
+
             var tabcontent = document.getElementsByClassName("tab-content");
             for (var i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
